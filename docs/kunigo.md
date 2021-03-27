@@ -1,4 +1,4 @@
-## Kunigo kun esceptoj
+## Kunigo
 
 Ofta tasko en komputilado estas la kunigado de du tabeloj komparante 
 la enhavon de du specifaj kolumnoj.  Supozeble ĉiu programlingvo kapablas 
@@ -168,7 +168,7 @@ while(<VIKI>) {
 
 #### XSLT
 
-Denove ni devas uzi indekson (ŝlosilon, angle: *key*), ĉar aliokaze daŭros pli ol kelkaj minutoj kompari la plurcent vikipediajn paĝojn kun la plurdek kapvortoj de Revo.
+Denove ni devas uzi indekson (ŝlosilon, angle: *key*), ĉar aliokaze daŭros pli ol kelkajn minutojn, kompari la plurcent mil vikipediajn paĝojn kun la plurdek mil kapvortoj de Revo.
 
 ```xsl
 <xsl:key name="rindekso" 
