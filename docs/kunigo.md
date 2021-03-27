@@ -170,7 +170,7 @@ while(<VIKI>) {
 
 Denove ni devas uzi indekson (ŝlosilon, angle: *key*), ĉar aliokaze daŭros pli ol kelkajn minutojn, kompari la plurcent mil vikipediajn paĝojn kun la plurdek mil kapvortoj de Revo.
 
-```xsl
+```xml
 <xsl:key name="rindekso" 
     match="indekso/kap-oj[@lng='eo']/v[@mrk!='']" 
     use="lower-case(k)"/>
