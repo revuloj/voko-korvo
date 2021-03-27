@@ -1,8 +1,14 @@
 ## Kunigo kun esceptoj
 
-Ofta tasko en komputilado estas la kunigado de du tabeloj komparante la enhavon de du specifaj kolumnoj. Se ni havas ekzemple
-unu liston de ĉiuj paĝoj en Vikipedio kaj unu liston kun ĉiuj kapvortoj de Revo kaj volas eltrovi, kiuj vortoj estas klarigiaj kaj en Revo kaj en Vikipedio por aldoni referencojn, ni devos kompari kaj ekstrakti ilin per kunigo (angle: *join*).
+Ofta tasko en komputilado estas la kunigado de du tabeloj komparante 
+la enhavon de du specifaj kolumnoj.  Supozeble ĉiu programlingvo kapablas 
+fari tion, sed ĉiuj nomas la koncepton per alia vorto, ekz-e 
+SQL: *JOIN*, Excel: *VLOOKUP*, Prologo: *Unification* kaj en 
+multaj lingvoj oni devas aparte programi ĝin per *WHILE*-maŝo kaj komparo.
 
+Se ni havas ekzemple unu liston de ĉiuj paĝoj en Vikipedio kaj unu liston 
+kun ĉiuj kapvortoj de Revo kaj volas eltrovi, kiuj vortoj estas klarigitaj 
+kaj en Revo kaj en Vikipedio por aldoni referencojn, ni devos kompari kaj ekstrakti ilin per kunigo.
 Oni povas elŝuti tian [liston de duonmiliono da paĝonomoj 
 ĉe Vikipedio](http://download.wikimedia.org/eowiki/latest/eowiki-latest-all-titles-in-ns0.gz)
 kaj ricevas tian tre miksitan liston:
@@ -74,14 +80,26 @@ kaj ĉe tiu okazo ni forigos ankaŭ ĉiujn listerojn, kiuj ne konsistas el nur l
 ```bash
 echo '<?xml version="1.0"?><viki>'
 gzip -d < eoviki.gz \
-  | grep -E "^[[:upper:]][-[:lower:]][-_[:alpha:]]*$" \
-  | sed -E 's%^(.*)$%<v>\1</v>%'
+  | grep -E '^[[:upper:]][-[:lower:]][-_[:alpha:]]*$' \
+  | sed  -E 's%^(.*)$%<v>\1</v>%'
 echo '</viki>'
 ```
 
 ### Kunigo esprimata en diversaj lingvoj
 
-#### SQL (relaciaj datumbazoj)
+#### Ŝelo
+
+La plej simpla metodo kunigi du dosierojn laŭ komuna kolumno ŝajnas esti la bazoj GNU-komandoj `sort` kaj `join` iel tiel:
+
+```bash
+join -i -t , \
+  <(sort vikilst.csv | tr '_' ' ') \
+  <(sort -t , revo_drv.csv)
+```
+
+Bedaŭrinde tio ĉe mi ne funkcias, pro unikodaj signoj en la listoj! Se vi trovis elegantan manieron eviti aŭ solvi tiun problemon, nepre skribu! Sola ebleco ŝajnas esti, tute forbrosi ĉiujn ne-esperantajn vortojn unue kaj konverti al iso-8859-3 aŭ uzi la x-kodon (cx, gx ktp).
+
+#### SQL (rilatecaj datumbazoj)
 
 ```sql
 SELECT v.titolo, r.mrk 
@@ -94,7 +112,8 @@ Ni devos ankoraŭ minuskligi kaj anstataŭigi la substrekojn por la komparo:
 ```sql
 SELECT v.titolo, r.mrk 
 FROM vikipedio v
-LEFT JOIN revo_drv r ON REPLACE(LOWER(v.titolo),'_',' ') = LOWER(r.kap);
+LEFT JOIN revo_drv r 
+     ON REPLACE(LOWER(v.titolo),'_',' ') = LOWER(r.kap);
 ```
 
 #### Prologo
@@ -129,13 +148,12 @@ Sen indeksi la komparliston daŭras eterne, do ni unue kreas asocian liston (hak
 my %drv_oj;
 while (<REVO_DRV>) {
     chomp;
-    # supozante ke ni havas liniojn kapvorto;marko
-    my @kampoj = split(';');
-    $drv_oj->{$kampoj[0]} = $kampoj[1];
+    my ($kapvorto,$marko) = split(';');
+    $drv_oj->{$kapvorto} = $marko;
 }
 ```
 
-Poste ni povas trakuti la Vikiliston kaj trovi la konvenajn kapvortojn
+Poste ni povas trakuri la Vikiliston kaj trovi la konvenajn kapvortojn
 
 ```perl
 my %ref_oj
@@ -152,31 +170,42 @@ while(<VIKI>) {
 
 Denove ni devas uzi indekson (ŝlosilon, angle: *key*), ĉar aliokaze daŭros pli ol kelkaj minutoj kompari la plurcent vikipediajn paĝojn kun la plurdek kapvortoj de Revo.
 
-```xml
+```xsl
 <xsl:key name="rindekso" 
     match="indekso/kap-oj[@lng='eo']/v[@mrk!='']" 
     use="lower-case(k)"/>
 
-<!-- ni bezonas la dokumentradikon kiel kunteksto malsupre -->
+<!-- ni bezonas la dokumentradikon kiel 
+     kunteksto malsupre -->
 <xsl:variable name="radiko" select="/"/>
 
 <xsl:template match="/">
-    <vikiref>
-        <xsl:for-each select="document('eoviki.xml')//v">
-            <xsl:call-template name="kunigo">
-                <xsl:with-param name="viki" select="."/>
-            </xsl:call-template>
-        </xsl:for-each>
-    </vikiref>
+  <vikiref>
+    <xsl:for-each 
+        select="document('eoviki.xml')//v">
+      <xsl:call-template name="kunigo">
+        <xsl:with-param name="viki" select="."/>
+      </xsl:call-template>
+    </xsl:for-each>
+  </vikiref>
 </xsl:template>
 
 <xsl:template name="kunigo">
-    <xsl:param name="viki"/>    
-    <!-- kunteksto devas esti la dokumento de la indekso! -->
-    <xsl:for-each select="$radiko/key('rindekso',
-        translate(lower-case($viki),'_',' '))">
-            <r v="{$viki}" r="{@mrk}"/>
-    </xsl:for-each>
+  <xsl:param name="viki"/>    
+  <!-- kunteksto devas esti la dokumento 
+       de la indekso! -->
+  <xsl:for-each 
+      select="$radiko/key('rindekso',
+      translate(lower-case($viki),'_',' '))">
+    <r v="{$viki}" r="{@mrk}"/>
+  </xsl:for-each>
 </xsl:template>    
 ```
+
+Resume, evidentiĝas, ke en XSLT oni devas tajpi pli multe da kodo por realigi la kunigon de referencoj el du fontoj. Ni tamen decidis realigi tion per XSL en Revo, ĉar pli ol koncizeco rolas la kunteksto:
+
+- granda parto de Revo estas transformado de XML per XSLT kaj aparte la indeksoj tiel kreiĝas
+- do la fontodosiero de kapvortoj kaj markoj jam kreiĝas kiel XML-dosiero dum tiu procedo
+- uzo de XML garantias sintakse ĝustajn rezultojn, kio malgrandigas la riskon ne nerimarkitaj fuŝaĵoj
+
 
