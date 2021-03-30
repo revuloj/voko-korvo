@@ -6,7 +6,7 @@
 
 <!-- https://www.metalevel.at/prolog/concepts -->
 
-terminoj:
+Bazaj terminoj:
 
 - atomo
 - variablo
@@ -20,7 +20,7 @@ terminoj:
 Anonima variablo komenciĝas per substreko `_`, oni povas uzi ĝin, se la valoro ne interesas.
 
 *Predikato* estas esprimo el nomo kun arbitra nombro de argumentoj. La nombron de argumentoj oni indikas post oblikvo: `pluvas/0`, `frukto/1`, `homoe/1`, `koloro/2`, `geedzoj/3`.
-Prediktaojn oni difinas per kolekto de klaŭzoj, kiuj siavice povas esti faktoj aŭ reguloj. 
+Prediktaojn oni difinas per kolekto de *klaŭzoj*, kiuj siavice povas esti *faktoj* aŭ *reguloj*. 
 
 Jen kelkaj faktoj por la supre nomitaj predikatoj. Regulojn ni rigardos pli poste.
 
@@ -77,7 +77,7 @@ false.
 
 Vi povas elprovi tion rekte sur retpaĝo de [SWI-Ŝelo](https://swish.swi-prolog.org/), aŭ alternative instali SWI-Prologon, meti la faktojn en dosieron, kiun vi ŝargas per `swipl faktoj.pl` kaj poste pridemandi.
 
-Per reguloj vi povas riĉigi viajn faktojn. Ekzemple ĉe geedzoj la ordo de la unuaj du argumentoj estas egalaj. Do se vi demandus `geedzoj('Klara',P,J).` vi ne ricevus respondon. Do aŭ vi devus ĉiam doni du faktojn aŭ pli bone uzi aldonan regulon:
+Per *reguloj* vi povas riĉigi viajn faktojn. Ekzemple ĉe geedzoj la ordo de la unuaj du argumentoj estas egalaj. Do se vi demandus `geedzoj('Klara',P,J).` vi ne ricevus respondon. Do aŭ vi devus ĉiam doni du faktojn aŭ pli bone uzi aldonan regulon:
 
 ```prolog
 geedzoj('Ludoviko','Klara',1887).
@@ -114,3 +114,93 @@ geedzoj2(P1,P2,J) :- geedzoj(P1,P2,J).
 geedzoj2(P1,P2,J) :- geedzoj(P2,P1,J).
 ```
 
+Tion ni ankaŭ povas skribi kiel alternativo.
+
+```prolog
+geedzoj('Ludoviko','Klara',1887).
+
+geedzoj2(P1,P2,J) :- 
+    geedzoj(P1,P2,J);
+    geedzoj(P2,P1,J).
+```
+
+.... Klarigu kio estas unuigo
+
+.... Klarigu kio estas retrospurado
+
+... Klarigu kio estas tranĉo
+
+... Klarigu = is ktp por doni faktojn laŭ iom alia maniero...
+
+### Listoj
+
+```prolog
+?- Listo=[D,1,2,c], D is 4+5, Listo=[_,_|Resto].
+Listo = [9, 1, 2, c],
+D = 9,
+Resto = [2, c].
+```
+
+Kion do ni ĵus faris? Ni difinis liston el kvar elementoj, kies unua estas variablo kaj la aliaj du nombroj kaj unu atomo.
+Pri la variablo ni poste donis fakton ke ĝi estas la sumo el 4 kaj 5. Fine ni identigis la voston de la listo ekde la tria elemento kun la variablo `Resto`.
+
+
+...Klarigu | kaj ,
+
+... Klarigu `is` kaj `=`
+
+
+Regulojn oni povas rikure difini, kio aparte estas utila ĉe listoj. Ni difinas predikaton elekto/3, kiu elektas arbitran elementon el listo kaj redonas reston de la listo sen tiu elemento.
+Ni povas difini ĝin rikure tiel: redonu la unuan elementon aŭ redonu elementon el la vosto de la listo ekde la dua elemento.
+
+```prolog
+elekto(Kapo, [Kapo|Vosto], Vosto).
+elekto(Elemento, [Kapo|Vosto], [Kapo|Resto]) :-
+        elekto(Elemento, Vosto, Resto).
+```
+
+```prolog
+?- elekto(X,[1,2,3],Resto).
+X = 1,
+Resto = [2, 3] ;
+X = 2,
+Resto = [1, 3] ;
+X = 3,
+Resto = [1, 2] ;
+false.
+```
+
+Tio senpere funkcias ankaŭ en inversa direkto: ni donas la reston kaj variablon por la unua elemento kaj demandas eblajn listojn estiĝantajn per enmeto de la variablo en la diversajn lokojn:
+
+```prolog
+?- elekto(X,Listo,[2,3]).
+Listo = [X, 2, 3] ;
+Listo = [2, X, 3] ;
+Listo = [2, 3, X] ;
+false.
+```
+
+Kaj kompreneble oni povas ankaŭ demandi, ĉu iu elemento
+troviĝas en listo:
+
+```prolog
+?- elekto(3,[1,2,3],_Resto_).
+true.
+
+?- elekto(4,[1,2,3],_Resto_).
+false.
+```
+
+Per la predikato `maplist` ni povas apliki predikaton
+al ĉiujn ĝiaj elementoj:
+
+```prolog
+?- maplist(plus(3),[1,2,3],S).
+S = [4, 5, 6].
+
+?- A=99, maplist(writeln,[[A,B,C],[1,2,3],[ni,lernas,'Prologon']]).
+[99,_G251,_G254]
+[1,2,3]
+[ni,lernas,Prologon]
+A = 99.
+```
