@@ -102,14 +102,23 @@ for (ido of kap.getChildren...) {
 ### XPath
 
 En la ekzemplo de Javoskripto vi vidis, ke oni devis multe tajpi por navigi la strukturarbon.
-Tial la lingvo XPath, kiu estas uzebla kiel modulo ene de la aliaj lingvoj, permesas tre koncize aliri specifan nodon. La sama do esprimita kiel XPath.
+Tial la lingvoj CSS kaj XPath, kiu estas uzebla kiel modulo ene de la aliaj lingvoj, permesas tre koncize aliri specifan nodon. Jen do kiel oni adresas per CSS:
 
-```xpath
-//drv[0]/@mrk
-//drv[0]/kap/text()
+```css
+drv:first-of-type[mrk]
+drv:first-of-type/kap
 ```
 
-Sed XPath mem estas nur maniero esprimi la adreson de iu nodo en la strukturarbo, ĝi ne estas programlingvo. Oni bezonas do aldone programlingvo por ekzemple eltajpi, kio troviĝas ĉe la serĉata adreso.
+Fakte, ĉar la apliko de CSS estas stilado kaj atributoj ne estas prezentataj, oni uzas ilin nur en kondicoj `[...]`, sed ne adresas rekte.
+
+En XPath oni povas adresi ilin ankaŭ rekte, ĉar eble oni volas transformi la enhavonde atributo al enhavo de elmento per XLS ks:
+
+```xpath
+//drv[1]/@mrk
+//drv[1]/kap/text()
+```
+
+Sed XPath siavice estas nur maniero esprimi la adreson de iu nodo en la strukturarbo, ĝi ne estas programlingvo. Oni bezonas do aldone programlingvo por ekzemple eltajpi, kio troviĝas ĉe la serĉata adreso.
 
 
 
@@ -118,10 +127,10 @@ Sed XPath mem estas nur maniero esprimi la adreson de iu nodo en la strukturarbo
 ```xml
 <xsl:template match="/">
     <xsl:text>mrk: </xsl:text>
-    <xsl:value-of select="//drv[0]/@mrk">
+    <xsl:value-of select="//drv[1]/@mrk">
     <xsl:text>
 kap: </xsl:text>
-    <xsl:value-of select="//drv[0]/kap/text()"/>
+    <xsl:value-of select="//drv[1]/kap/text()"/>
 </xsl:template>
 ```
 
@@ -130,7 +139,7 @@ Ni vidas la saman problemon kiel en Javo-skripto: mankas la enhavo, kiun prezent
 Do ni devas iom dismeti la tuton kaj lasi al XSL-ŝablonoj aplikiĝi laŭ la ĝusta ordo: 
 
 ```xml
-<xsl:template match="drv[0]">
+<xsl:template match="drv[1]">
     <xsl:text>mrk: </xsl:text>
     <xsl:value-of select="@mrk"/>
     <xsl:text>
