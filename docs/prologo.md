@@ -38,7 +38,7 @@ koloro(banano,flava).
 koloro(pomo,flava).
 koloro(pomo,ruĝa).
 koloro(frago,ruĝa).
-koloro(frambo,rugha).
+koloro(frambo,ruĝa).
 koloro(pruno,violkolora).
 koloro(kukumo,verda).
 
@@ -48,7 +48,28 @@ homo('Klara').
 geedzoj('Ludoviko','Klara',1887).
 ```
 
-Ni povas pridemandi predikatojn donante arbitrajn argumentojn. Laŭ la difinitaj faktoj (kaj reguloj), Prologo provos trovi solvojn.  
+Se vi volas uzi viajn faktojn skribu ilin en dosieron, ekzemple `faktoj.pl` kaj lanĉu Prologon kun ili:
+
+```
+swipl faktoj.pl
+```
+
+Alternative vi ankaŭ povas poste *konsulti* viajn faktojn por ŝargi ilin (la inviton `?-` skribas Prologo, vi nur skribu la parton post tiu):
+
+```prolog
+swipl
+?- consult(faktoj).
+```
+
+aŭ pli koncize:
+
+```prolog
+swipl
+?- [faktoj].
+```
+
+
+Ni povas nun pridemandi predikatojn donante arbitrajn argumentojn. Laŭ la difinitaj faktoj (kaj reguloj), Prologo provos trovi solvojn.  
 
 Jen ni demandas ĉu pluvas, pri la koloro de frukto, pri la fruktoj de certa koloro kaj ĉu certa frukto havas certan koloron, 
 kaj ĉu Ludoviko edziĝis kaj kun kiu kaj kiam:
@@ -60,7 +81,7 @@ true.
 ?- koloro(kukumo,K).
 K = verda.
 
-?- koloro(F,rugha).
+?- koloro(F,ruĝa).
 F = pomo ;
 F = frago ;
 F = frambo ;
@@ -75,16 +96,16 @@ P = 'Klara' ;
 false.
 ```
 
-Vi povas elprovi tion rekte sur retpaĝo de [SWI-Ŝelo](https://swish.swi-prolog.org/), aŭ alternative instali SWI-Prologon, meti la faktojn en dosieron, kiun vi ŝargas per `swipl faktoj.pl` kaj poste pridemandi.
+Vi povas elprovi tion rekte sur retpaĝo de [SWI-Ŝelo](https://swish.swi-prolog.org/), aŭ alternative instali SWI-Prologon, meti la faktojn en dosieron, kiun vi ŝargas kiel supre klarigita kaj poste pridemandi.
 
-Per *reguloj* vi povas riĉigi viajn faktojn. Ekzemple ĉe geedzoj la ordo de la unuaj du argumentoj estas egalaj. Do se vi demandus `geedzoj('Klara',P,J).` vi ne ricevus respondon. Do aŭ vi devus ĉiam doni du faktojn aŭ pli bone uzi aldonan regulon:
+Per *reguloj* vi povas riĉigi viajn faktojn. Ekzemple ĉe geedzoj la ordo de la unuaj du argumentoj estas egalaj. Do se vi demandus `geedzoj('Klara',P,J).`, vi ne ricevus respondon. Do aŭ vi devus ĉiam doni du faktojn aŭ pli bone uzi aldonan regulon:
 
 ```prolog
 geedzoj('Ludoviko','Klara',1887).
 geedzoj(P1,P2,J) :- geedzoj(P2,P1,J).
 ```
 
-Se vi nun demand pri Klara, vi ricevos la atendian respondon. Sed vi ankaŭ rimarkos problemon kun la regulo.
+Se vi nun demandas pri Klara, vi ricevos la atendian respondon. Sed vi ankaŭ rimarkos problemon kun la regulo.
 
 ```prolog
 ?- geedzoj('Klara',P,J).
@@ -110,8 +131,8 @@ La regulo ĉiam denove aplikiĝos kaj trovas pli kaj pli da solvoj ĉiam interŝ
 ```prolog
 geedzoj('Ludoviko','Klara',1887).
 
-geedzoj2(P1,P2,J) :- geedzoj(P1,P2,J).
-geedzoj2(P1,P2,J) :- geedzoj(P2,P1,J).
+estas_geedzoj(P1,P2,J) :- geedzoj(P1,P2,J).
+estas_geedzoj(P1,P2,J) :- geedzoj(P2,P1,J).
 ```
 
 Tion ni ankaŭ povas skribi kiel alternativo.
@@ -119,7 +140,7 @@ Tion ni ankaŭ povas skribi kiel alternativo.
 ```prolog
 geedzoj('Ludoviko','Klara',1887).
 
-geedzoj2(P1,P2,J) :- 
+estas_geedzoj(P1,P2,J) :- 
     geedzoj(P1,P2,J);
     geedzoj(P2,P1,J).
 ```
