@@ -30,12 +30,12 @@ Perlo sintezas la utilon de `C`, `sh`, `awk`, `sed` en unu lingvo.
 
 ### Saluton mondo!
 
-Vi povas doni programon kiel argumenton rekte sur la komandlinio. Do porvu:
+Vi povas doni programon kiel argumenton rekte sur la komandlinio. Do provu:
 ```bash
   $ perl -e 'print "Hello World!\n";'
 ```
 
-Kiel skripto preparu dosieron `slauton.pl` kun tiu enhavo:
+Kiel skripto preparu dosieron `saluton.pl` kun tiu enhavo:
 ```perl
   #!/usr/bin/perl
   print "Hello World!\n";
@@ -80,7 +80,7 @@ simile kiel en la programlingvo C:
   <=>    komparo: 1,0,-1 se >,=,<
 ```
 
-  #### logikaj operacioj
+#### logikaj operacioj
 
 ```
   ||     logika aŭo
@@ -146,13 +146,13 @@ Skalaroj (aŭ simplaj tipoj) reprezentas nombrojn aŭ signarojn:
 
 #### Indicitaj listoj
 
-Ili reprezentas listojn de vaolroj, kiujn oni adresas
+Ili reprezentas listojn de valoroj, kiujn oni adresas
 per nombra indico
 
 ```perl
   $a[0]=12; $a[1]='Ludoviko'; $a[6]='Zamenhof';
   @b = ('blua','flava','verda');
-  # elskribu @a kaj @b (anstataŭ foreach eblas ankaŭ nura for)
+  # elskribu @a kaj @b (anstataŭ 'foreach' eblas ankaŭ nura 'for')
   foreach $x (@a) { print $x };
   for ($n = 0; $n < @b; $n++) { print $b[$n] };
 ```
@@ -160,7 +160,7 @@ per nombra indico
 #### Asociaj aŭ haketaj listoj
 
 Ĉe asociaj listoj oni adresas la unuopajn valorojn
-per signaroj (ŝlosilvortoj). Pro rapidecoj ili interne
+per signaroj (ŝlosilvortoj). Pro rapideco ili interne
 estas haketitaj (pro tio la nomo)
 
 ```perl
@@ -198,10 +198,10 @@ estas haketitaj (pro tio la nomo)
 >
 Pliajn vi trovas en la dokumentaro pri Perlo.
 
+#### *Tasketo:*
 
-*Tasketo:*
-
-Provu skribi skripton, kiu redonas ĉiujn mediovariablojn kun siaj nomoj. Se vi spertas skribu ĝin kiel CGI-skripto!
+Provu skribi skripton, kiu redonas ĉiujn mediovariablojn kun siaj nomoj. 
+Se vi spertas skribu ĝin kiel CGI-skripton!
 
 ### Sintakselementoj
 
@@ -245,16 +245,17 @@ Operacioj kun regulesprimoj:
   tr/../../ # Serĉo kaj anstataŭigo de unuopaj signoj
 ```
 
-Flagegoj por m// kaj s///:
+Flagoj por m// kaj s///:
 
 ```perl
   i         # Ne distingu minusklojn kaj majusklojn
   s         # Traktu plurajn liniojn kiel unu signaro
   g         # ripetu la serĉo ĝis fino
   e         # La anstaŭigaĵo ne estas signaro sed Perl-esprimo
-```perl 
+```
 
 Apartaj signoj por regulesprimoj:
+
 ```perl
   .      # ĉiu ajn signo
   +      # 1- aŭ plurfoja okazo
@@ -348,7 +349,7 @@ Legu kaj skribu la enhavon de ĉiuj dosieroj donitaj sur la komandlinio plu la t
 
 pliajn trovu en la dokumentaro de Perlo.
 
-*Taskoj:*
+#### *Taskoj:*
 
 - Verku skripton, kiu legas la enhavon de soero en skalaro.
 - Verku skripton, kiu trakuras dosierujon kaj skribas la nomojn de HTML-doserioj (kiuj havas la finaĵon .htm aŭ .html)
@@ -448,58 +449,58 @@ Gravaj komandoj:
 
 #### Funkcioj por skalaroj kaj signaroj 
 
-            chomp, chop, chr, crypt, hex, index, lc, lcfirst,
-            length, oct, ord, pack, q/STRING/, qq/STRING/,
-            reverse, rindex, sprintf, substr, tr///, uc, ucfirst,
-            y///
+  chomp, chop, chr, crypt, hex, index, lc, lcfirst,
+  length, oct, ord, pack, q/STRING/, qq/STRING/,
+  reverse, rindex, sprintf, substr, tr///, uc, ucfirst,
+  y///
 
 #### regulesprimoj
 
-            m//, pos, quotemeta, s///, split, study
+  m//, pos, quotemeta, s///, split, study
 
 #### nombraj fu8nkcioj
 
-            abs, atan2, cos, exp, hex, int, log, oct, rand, sin,
-            sqrt, srand
+  abs, atan2, cos, exp, hex, int, log, oct, rand, sin,
+  sqrt, srand
 
 #### listo-funkcioj
 
-            pop, push, shift, splice, unshift
-            grep, join, map, qw/STRING/, reverse, sort, unpack
+  pop, push, shift, splice, unshift
+  grep, join, map, qw/STRING/, reverse, sort, unpack
 
 #### funkcioj por asociaj listoj
 
-            delete, each, exists, keys, values
+  delete, each, exists, keys, values
 
 #### funkcioj por enigo kaj eligo
 
-            binmode, close, closedir, dbmclose, dbmopen, die,
-            eof, fileno, flock, format, getc, print, printf,
-            read, readdir, rewinddir, seek, seekdir, select,
-            syscall, sysread, sysseek, syswrite, tell, telldir,
-            truncate, warn, write
+  binmode, close, closedir, dbmclose, dbmopen, die,
+  eof, fileno, flock, format, getc, print, printf,
+  read, readdir, rewinddir, seek, seekdir, select,
+  syscall, sysread, sysseek, syswrite, tell, telldir,
+  truncate, warn, write
      
 ### funkcioj por duumaj datumoj, bufroj kaj rikordoj
 
-            pack, read, syscall, sysread, syswrite, unpack, vec
+  pack, read, syscall, sysread, syswrite, unpack, vec
 
 #### funkcioj por dosierreprezentiloj, dosieroj kaj dosierujoj
 
-            -X, chdir, chmod, chown, chroot, fcntl, glob, ioctl,
-            link, lstat, mkdir, open, opendir, readlink, rename,
-            rmdir, stat, symlink, umask, unlink, utime
+  -X, chdir, chmod, chown, chroot, fcntl, glob, ioctl,
+  link, lstat, mkdir, open, opendir, readlink, rename,
+  rmdir, stat, symlink, umask, unlink, utime
 
 #### funkcioj por kontaktoskatoloj
 
-            accept, bind, connect, getpeername, getsockname,
-            getsockopt, listen, recv, send, setsockopt, shutdown,
-            socket, socketpair
+  accept, bind, connect, getpeername, getsockname,
+  getsockopt, listen, recv, send, setsockopt, shutdown,
+  socket, socketpair
 
 #### funkcioj por reto kaj protokoloj
 
-            endprotoent, endservent, gethostbyaddr,
-            gethostbyname, gethostent, getnetbyaddr,
-            getnetbyname, getnetent, getprotobyname,
-            getprotobynumber, getprotoent, getservbyname,
-            getservbyport, getservent, sethostent, setnetent,
-            setprotoent, setservent           
+  endprotoent, endservent, gethostbyaddr,
+  gethostbyname, gethostent, getnetbyaddr,
+  getnetbyname, getnetent, getprotobyname,
+  getprotobynumber, getprotoent, getservbyname,
+  getservbyport, getservent, sethostent, setnetent,
+  setprotoent, setservent           
