@@ -449,58 +449,78 @@ Gravaj komandoj:
 
 #### Funkcioj por skalaroj kaj signaroj 
 
+```
   chomp, chop, chr, crypt, hex, index, lc, lcfirst,
   length, oct, ord, pack, q/STRING/, qq/STRING/,
   reverse, rindex, sprintf, substr, tr///, uc, ucfirst,
   y///
+```
 
 #### regulesprimoj
 
+```
   m//, pos, quotemeta, s///, split, study
+```
 
 #### nombraj fu8nkcioj
 
+```
   abs, atan2, cos, exp, hex, int, log, oct, rand, sin,
   sqrt, srand
+```
 
 #### listo-funkcioj
 
+```
   pop, push, shift, splice, unshift
   grep, join, map, qw/STRING/, reverse, sort, unpack
+```
 
 #### funkcioj por asociaj listoj
 
+```
   delete, each, exists, keys, values
+```
 
 #### funkcioj por enigo kaj eligo
 
+```
   binmode, close, closedir, dbmclose, dbmopen, die,
   eof, fileno, flock, format, getc, print, printf,
   read, readdir, rewinddir, seek, seekdir, select,
   syscall, sysread, sysseek, syswrite, tell, telldir,
   truncate, warn, write
-     
+```
+
 ### funkcioj por duumaj datumoj, bufroj kaj rikordoj
 
+```
   pack, read, syscall, sysread, syswrite, unpack, vec
+```
 
 #### funkcioj por dosierreprezentiloj, dosieroj kaj dosierujoj
 
+```
   -X, chdir, chmod, chown, chroot, fcntl, glob, ioctl,
   link, lstat, mkdir, open, opendir, readlink, rename,
   rmdir, stat, symlink, umask, unlink, utime
+```
 
 #### funkcioj por kontaktoskatoloj
 
+```
   accept, bind, connect, getpeername, getsockname,
   getsockopt, listen, recv, send, setsockopt, shutdown,
   socket, socketpair
+```
 
 #### funkcioj por reto kaj protokoloj
 
+```
   endprotoent, endservent, gethostbyaddr,
   gethostbyname, gethostent, getnetbyaddr,
   getnetbyname, getnetent, getprotobyname,
   getprotobynumber, getprotoent, getservbyname,
   getservbyport, getservent, sethostent, setnetent,
   setprotoent, setservent           
+```
