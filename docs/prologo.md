@@ -19,7 +19,7 @@ Bazaj terminoj:
 *Variabloj* povas preni iujn valorojn: nombrojn, atomojn, esprimojn ktp. Ili havas majusklan nomon: `A`, `B`, `Homo`. 
 Anonima variablo komenciĝas per substreko `_`, oni povas uzi ĝin, se la valoro ne interesas.
 
-*Predikato* estas esprimo el nomo kun arbitra nombro de argumentoj. La nombron de argumentoj oni indikas post oblikvo: `pluvas/0`, `frukto/1`, `homoe/1`, `koloro/2`, `geedzoj/3`.
+*Predikato* estas esprimo el nomo kun arbitra nombro de argumentoj. La nombron de argumentoj oni indikas post oblikvo: `pluvas/0`, `frukto/1`, `homo/1`, `koloro/2`, `geedzoj/3`.
 Prediktaojn oni difinas per kolekto de *klaŭzoj*, kiuj siavice povas esti *faktoj* aŭ *reguloj*. 
 
 Jen kelkaj faktoj por la supre nomitaj predikatoj. Regulojn ni rigardos pli poste.

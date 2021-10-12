@@ -1,5 +1,8 @@
 # TLS (Transport-Nivela Sekureco)
 
+* Enhavo
+{:toc}
+
 ## Kio estas TLS (frua nomo SSL)?
 
 [TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security) estas protokolo, kiu kombiniĝas kun aliaj interretaj protokoloj por sekurigi ties interkomunikadon.
