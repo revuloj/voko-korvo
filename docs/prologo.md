@@ -1,5 +1,8 @@
 # Prologo
 
+* Enhavo
+{:toc}
+
 ## Lerni la bazojn de Prologo
 
 Jen ni enkondukas en la programlingvon Prologo. Pro koncizeco ni klarigas nur la bazajn aferojn por kompreni, kiel Prologo funkcias kaj helpi per la unuaj paŝoj. Se vi volas pli enprofundiĝi ni rekomendas uzi iujn el la pli detalaj enkondukoj, bedaŭrinde precipe angla- aŭ alilingvaj:
