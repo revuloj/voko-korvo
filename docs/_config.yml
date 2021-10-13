@@ -1,2 +1,7 @@
 theme: jekyll-theme-minimal
 
+toc:
+  min_level: 2
+  max_level: 4
+  ordered_list: false
+
