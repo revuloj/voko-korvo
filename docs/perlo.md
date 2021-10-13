@@ -430,7 +430,7 @@ $dbh->disconnect();
 
 #### La sencimigilo de Perlo
 
-Voki kun sencimigilo: perl -d
+Voki kun sencimigilo: `perl -d`
 
 Gravaj komandoj:
 ```
