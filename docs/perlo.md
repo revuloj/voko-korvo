@@ -1,4 +1,9 @@
 # Perlo
+{:.no_toc}
+
+* Enhavo
+{:toc}
+
 ## konciza enkonduko
 
 ### historia foneto

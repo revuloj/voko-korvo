@@ -1,4 +1,5 @@
 # Prologo
+{:.no_toc}
 
 * Enhavo
 {:toc}

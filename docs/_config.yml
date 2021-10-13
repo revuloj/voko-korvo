@@ -1,10 +1,2 @@
 theme: jekyll-theme-minimal
 
-plugins:
-  - jekyll-toc
-# vd https://github.com/toshimaru/jekyll-toc
-toc:
-  min_level: 2
-  max_level: 4
-  ordered_list: false
-

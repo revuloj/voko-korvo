@@ -1,4 +1,5 @@
 # TLS (Transport-Nivela Sekureco)
+{:.no_toc}
 
 * Enhavo
 {:toc}
