@@ -362,7 +362,7 @@ La tranĉo estas iom komparebla kun `break` en aliaj programlingvoj kaj `commit`
 
 Espereble mi sukfcesis iom klarigi la *tranĉon*. Verŝajne vi bone komprenos ĝin, post kiam du, trifoje unu via programo kondutis strange pigre, ne trovante la esperitajn solvojn kaj vi trovinte la kaŭzon en mismetita aŭ forgesita `!` heŭrekaos. :-)
 
-### Listoj
+## Listoj
 
 ```prolog
 ?- Listo=[D,1,2,c], D is 4+5, Listo=[_,_|Resto].
@@ -393,7 +393,7 @@ E3 = 3,
 R = [].
 ```
 
-## Rikuro tra listo
+### Rikuro tra listo
 
 Regulojn oni povas rikure difini, kio aparte estas utila ĉe listoj. Ni difinas predikaton elekto/3, kiu elektas arbitran elementon el listo kaj redonas reston de la listo sen tiu elemento.
 Ni povas difini ĝin rikure tiel: redonu la unuan elementon aŭ redonu elementon el la vosto de la listo ekde la dua elemento.
