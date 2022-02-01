@@ -89,7 +89,7 @@ echo '</viki>'
 
 #### Ŝelo
 
-La plej simpla metodo kunigi du dosierojn laŭ komuna kolumno ŝajnas esti la bazoj GNU-komandoj `sort` kaj `join` iel tiel:
+La plej simpla metodo kunigi du dosierojn laŭ komuna kolumno ŝajnas esti la bazaj GNU-komandoj `sort` kaj `join` iel tiel:
 
 ```bash
 join -i -t , \
@@ -206,6 +206,6 @@ Resume, evidentiĝas, ke en XSLT oni devas tajpi pli multe da kodo por realigi l
 
 - granda parto de Revo estas transformado de XML per XSLT kaj aparte la indeksoj tiel kreiĝas
 - do la fontodosiero de kapvortoj kaj markoj jam kreiĝas kiel XML-dosiero dum tiu procedo
-- uzo de XML garantias sintakse ĝustajn rezultojn, kio malgrandigas la riskon ne nerimarkitaj fuŝaĵoj
+- uzo de XML garantias sintakse ĝustajn rezultojn, kio malgrandigas la riskon de nerimarkitaj fuŝaĵoj
 
 
